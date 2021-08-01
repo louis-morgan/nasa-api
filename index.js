@@ -2,6 +2,7 @@ import fastify from 'fastify'
 import fastifyEnv from 'fastify-env'
 import prettifier from 'pino-pretty'
 import rawHeaders from 'fastify-raw-body'
+import getImages from './routes/MarsRoverPhotos/get-images.js'
 import todaysImage from './routes/APOD/todays-image.js'
 
 const server = fastify({
@@ -19,7 +20,7 @@ server.register(rawHeaders)
 await server.after()
 
 server.get('/APOD/todays-image', todaysImage)
-
+server.get('/mars-rover-photos/images', getImages)
 
 const start = async () => {
   try {
